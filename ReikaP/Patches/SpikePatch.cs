@@ -33,7 +33,7 @@ namespace ReikaP.Patches
 
         public static void SpikeEggs(StoryManager __instance, CommonStates pCommon, ref int __bossBattleState)
         {
-            
+
             bool egged = false;
             /*int eggs = new int();
             eggs = 0;
@@ -64,7 +64,7 @@ namespace ReikaP.Patches
 
 
         }
-        /*[HarmonyPatch(typeof(StoryManager))]
+        [HarmonyPatch(typeof(StoryManager))]
         public static void EggPregnancy(CommonStates girl)
         {
             int eggStage = new int();
@@ -72,12 +72,32 @@ namespace ReikaP.Patches
 
             eggStage++;
 
-            if (common.pregnant[1] <= 0 && anim.skeleton.FindSlot("Body_preg") == null)
+            if (girl.pregnant[1] <= 0 && girl.anim.skeleton.FindSlot("Body_preg") == null)
             {
                 Attachment slot1 = girl.anim.skeleton.GetAttachment("Body_preg", "Body_preg");
                 girl.anim.skeleton.SetAttachment("Body_preg", slot1.Name);
             }
-        }*/
+        }
+
+        // The following is just a list of birth animations and their possible replacements. I will need to check them out in the gallery before I make a final decision. The code below is likely wrong, it's placeholder for now.
+        [HarmonyPatch(typeof(SexManager))]
+        [HarmonyPatch("Delivery")]
+        [HarmonyPrefix]
+        public static void DeliveryPatch(SexManager __instance, CommonStates girl)
+        {
+            if (girl.anim.skeleton.FindSlot("A_delivery_idle") == null)
+            {
+                girl.anim.state.SetAnimation(0, "B_dogezaBack_idle", loop: true);
+            }
+            if (girl.anim.skeleton.FindSlot("A_delivery_loop") == null)
+            {
+                girl.anim.state.SetAnimation(0, "B_dogeza_idle", loop: true);
+            }
+            if (girl.anim.skeleton.FindSlot("A_delivery_end") == null)
+            {
+                girl.anim.state.SetAnimation(0, "B_dogezaToBack", loop: true);
+            }
+        }
 
     }
 }
