@@ -29,7 +29,7 @@ namespace ReikaP.Patches
         [HarmonyPatch(typeof(CommonStates))]
         [HarmonyPatch("Employed")]
         [HarmonyPrefix]
-        public static void FoodWaterFix(CommonStates __instance)
+        public static void NPCSettingsFix(CommonStates __instance)
         {
             NPCMove.NPCType npcType = NPCMove.NPCType.Friend;
 
@@ -63,7 +63,7 @@ namespace ReikaP.Patches
                 }
             }
         }
-
+        //The following is just a test, can remove.
         [HarmonyPatch(typeof(SexManager))]
         [HarmonyPatch("ManRapesSleep")]
         [HarmonyPrefix]
