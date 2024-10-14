@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BepInEx.Logging;
-using BepInEx;
 using HarmonyLib;
 using System.CodeDom;
 using System.Reflection;
@@ -18,6 +16,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Animations;
 using Spine.Unity;
 using Spine;
+using MelonLoader;
 
 namespace ReikaP.Patches
 {
@@ -33,7 +32,7 @@ namespace ReikaP.Patches
 
         public static void SpikeEggs(StoryManager __instance, CommonStates pCommon, ref int __bossBattleState)
         {
-
+            MelonLogger.Msg("SpikeEggs patch called");
             bool egged = false;
             /*int eggs = new int();
             eggs = 0;
@@ -55,10 +54,12 @@ namespace ReikaP.Patches
                 //Debug.Log(egged);
                 //Debug.Log(eggs);
                 egged = true;
+                MelonLogger.Msg("Egg condition triggered.");
             }
             if (egged)
             {
                 pCommon.pregnant[0] = 1;
+
             }
 
 

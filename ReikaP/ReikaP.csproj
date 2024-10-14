@@ -38,8 +38,8 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>G:\Other stuff\Mad_Island_Steam\Mad Island\Mad Island_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>G:\Other stuff\Mad_Island_Steam\Mad Island\BepInEx\core\BepInEx.dll</HintPath>
+    <Reference Include="MelonLoader">
+      <HintPath>..\..\..\Steam\steamapps\common\Mad Island\MelonLoader\net35\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="spine-unity, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

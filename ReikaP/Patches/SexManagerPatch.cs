@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BepInEx.Logging;
-using BepInEx;
 using HarmonyLib;
 using System.CodeDom;
 using System.Reflection;

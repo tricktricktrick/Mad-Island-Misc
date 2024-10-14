@@ -1,48 +1,36 @@
-﻿using BepInEx.Logging;
-using BepInEx;
-using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HarmonyLib;
+using MelonLoader;
 using ReikaP.Patches;
+
+[assembly: MelonInfo(typeof(ReikaP.ReikaBase), "Ex Reika Pregnancy Enabler", "1.0.0", "ReikaP")]
+[assembly: MelonGame("Emade Plus", "Mad Island")]
 
 namespace ReikaP
 {
-    [BepInPlugin(modGUID, modName, modVersion)]
-    public class ReikaBase : BaseUnityPlugin
+    public class ReikaBase : MelonMod
     {
         private const string modGUID = "Ex.ReikaP";
         private const string modName = "Ex Reika Pregnancy Enabler";
         private const string modVersion = "1.0.0";
 
-        private readonly Harmony harmony = new Harmony(modGUID);
-
+        private readonly HarmonyLib.Harmony harmony = new HarmonyLib.Harmony(modGUID);
         private static ReikaBase Instance;
 
-        internal ManualLogSource mls;
-
-
-
-        void Awake()
+        public override void OnInitializeMelon()
         {
+
             if (Instance == null)
             {
                 Instance = this;
             }
 
-            mls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
-
-            mls.LogInfo("Reika Pregnancy Enabler");
-            string location = ((BaseUnityPlugin)Instance).Info.Location;
-            string text = "ReikaP.dll";
-            string text2 = location.TrimEnd(text.ToCharArray());
+            MelonLogger.Msg($"Initializing {modName}");
 
             harmony.PatchAll(typeof(ReikaBase));
             harmony.PatchAll(typeof(SexManagerPatch));
             harmony.PatchAll(typeof(AltPatch));
-            mls.LogInfo("Fill them up.");
+
+            MelonLogger.Msg("Fill them up.");
         }
     }
 }
